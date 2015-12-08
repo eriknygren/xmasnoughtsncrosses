@@ -13,9 +13,9 @@
 
   <div ng-controller="GameController as ctrl">
     <div class="player-left"></div>
-    <div class="board">
+    <div class="container board">
       <div class="row board-row" ng-repeat="row in ctrl.game.board">
-        <div class="col-xs-4 text-center" ng-repeat="tile in row.tiles">
+        <div class="col-xs-4 text-center tile" ng-repeat="tile in row.tiles">
           im a tile
         </div>
       </div>
