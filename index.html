@@ -2,12 +2,17 @@
 <head>
 	<title>xmas 4square</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/gameController.js"></script>
 </head>
 <body ng-app="xmas">
 	<div ng-controller="GameController as ctrl">
-
+		<div ng-repeat="row in ctrl.game.board">
+			<div style="display: inline-block;" ng-repeat="tile in row.tiles">
+				im a tile
+			</div>
+		</div>
 	</div>
 </body>
 </html>
