@@ -4,13 +4,14 @@
   function GameController() {
 
     function Game() {
-    	this.board = _.map(_.range(4), function(){ 
+    	this.players = _.range(2)
+    	this.board = _.map(_.range(3), function(){ 
     		return new Row();
     	}.bind(this));
     }
 
     function Row() {
-    	this.tiles = _.map(_.range(4), function(){ 
+    	this.tiles = _.map(_.range(3), function(){ 
     		return new Tile();
     	}.bind(this));
     }
