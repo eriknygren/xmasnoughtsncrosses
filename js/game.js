@@ -66,40 +66,58 @@ var NC = {};
     console.log(winnerID)
 
     return winnerID;
-  }
+  };
 
   NC.Game.prototype._hasPlayerWon = function(id) {
     //console.log(this._checkForVerticalWin(id));
     return (this._checkForHorizontalWin(id) || 
-            this._checkForVerticalWin(id));
-  }
+            this._checkForVerticalWin(id) ||
+            this._checkForDiagonalWin(id));
+  };
 
   NC.Game.prototype._checkForHorizontalWin = function(id) {
     return _.any(this.board, function(row) {
-      return _.all(row.tiles, function(tile){
-        return tile.checkedID === id;
-      });
-    });
-  }
+      return this._doesAllTilesMatchPlayerID(row.tiles, id);
+    }.bind(this));
+  };
 
   NC.Game.prototype._checkForVerticalWin = function(id) {
     return _.any(this._getTilesInColumns(), function(column) {
-      return _.all(column, function(tile){
-        return tile.checkedID === id;
-      });
-    });
-  }
+      return this._doesAllTilesMatchPlayerID(column, id);
+    }.bind(this));
+  };
 
   NC.Game.prototype._checkForDiagonalWin = function(id) {
-    
-  }
+    var rows = [this._getTilesRightDiagonally(), this._getTilesLeftDiagonally()];
+    return _.any(rows, function(row) {
+      return this._doesAllTilesMatchPlayerID(row, id);
+    }.bind(this));
+  };
 
-  NC.Game.prototype._getTilesInColumns = function(id) {
+  NC.Game.prototype._getTilesInColumns = function() {
     return _.map(_.range(3), function(i){ 
       return _.map(this.board, function(row) {
         return row.tiles[i];
       })
     }.bind(this));
-  }
+  };
+
+  NC.Game.prototype._getTilesLeftDiagonally = function() {
+    return _.map(_.range(3), function(i){ 
+      return this.board[i].tiles[i]
+    }.bind(this));
+  };
+
+  NC.Game.prototype._getTilesRightDiagonally = function() {
+    return _.map(_.range(3).reverse(), function(value, index){ 
+      return this.board[index].tiles[value];
+    }.bind(this));
+  };
+
+  NC.Game.prototype._doesAllTilesMatchPlayerID = function(tiles, id) {
+    return _.all(tiles, function(tile){
+      return tile.checkedID === id;
+    });
+  };
 
 })();
