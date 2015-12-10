@@ -63,14 +63,15 @@ var NC = {};
         winnerID = index;
       }
     }.bind(this));
-    console.log('winner')
     console.log(winnerID)
 
     return winnerID;
   }
 
   NC.Game.prototype._hasPlayerWon = function(id) {
-    return this._checkForHorizontalWin(id);
+    //console.log(this._checkForVerticalWin(id));
+    return (this._checkForHorizontalWin(id) || 
+            this._checkForVerticalWin(id));
   }
 
   NC.Game.prototype._checkForHorizontalWin = function(id) {
@@ -82,11 +83,23 @@ var NC = {};
   }
 
   NC.Game.prototype._checkForVerticalWin = function(id) {
-    
+    return _.any(this._getTilesInColumns(), function(column) {
+      return _.all(column, function(tile){
+        return tile.checkedID === id;
+      });
+    });
   }
 
   NC.Game.prototype._checkForDiagonalWin = function(id) {
     
+  }
+
+  NC.Game.prototype._getTilesInColumns = function(id) {
+    return _.map(_.range(3), function(i){ 
+      return _.map(this.board, function(row) {
+        return row.tiles[i];
+      })
+    }.bind(this));
   }
 
 })();
