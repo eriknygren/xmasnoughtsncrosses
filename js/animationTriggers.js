@@ -15,5 +15,8 @@
     var currentSize = element.style.fontSize;
     element.style.fontSize = currentSize == "4rem" ? "6rem" : "4rem";
   };
-  //$('#myModal').modal()
+
+
+  // HELL YEAH
+  $(document.body).snowfall();
 })();
