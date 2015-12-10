@@ -66,6 +66,7 @@ body {
   height: 100%;
   border: 1px solid black;
   font-size: 30vh;
+  cursor: pointer;
 }
 
 .tile-nought {

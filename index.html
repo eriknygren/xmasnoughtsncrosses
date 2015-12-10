@@ -27,8 +27,11 @@
     </div>
     <div class="container board">
       <div class="row board-row" ng-repeat="row in ctrl.game.board">
-        <div class="col-xs-4 tile align-content-center" ng-repeat="tile in row.tiles">
-          <span class="tile-cross">X</span>
+        <div  class="col-xs-4 tile align-content-center"
+              ng-repeat="tile in row.tiles"
+              ng-click="ctrl.game.makeMove($parent.$index, $index)">
+          <span ng-show="tile.checkedID === 0" class="tile-cross">X</span>
+          <span ng-show="tile.checkedID === 1" class="tile-nought">O</span>
         </div>
       </div>
     </div>
