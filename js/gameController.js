@@ -3,7 +3,11 @@
 
   function GameController() {
 
-    this.game = new NC.Game();
+    this.game = new NC.Game(onGameOver);
+
+    function onGameOver(winner) {
+      console.log('gg', winner);
+    };
     console.log(this.game);
   };
 

@@ -19,13 +19,13 @@
         <img class="hidden-xs" src="img/red-santa.png" />
         <h3 class="player-info-name">Player One</h3>
         <h3>Crosses</h3>
-        <p class="player-info-score">Wins: 0</p>
+        <p class="player-info-score">Wins: {{ ctrl.game.players[0].wins }}</p>
         <h3 ng-show="ctrl.game.currentPlayerTurnIndex == 0"
             class="player-info-turn-text">Your turn!</h3>
       </div>
       <div class="player-buttons-and-decor">
-        <a  ng-click="ctrl.game.reset()"
-            class="btn btn-warning" href="#">Reset score</a>
+        <a  ng-click="ctrl.game.resetBoard()"
+            class="btn btn-warning" href="#">Reset board</a>
       </div>
     </div>
     <div class="container board">
@@ -43,11 +43,13 @@
         <img class="hidden-xs" src="img/green-santa.png" />
         <h3 class="player-info-name">Player Two</h3>
         <h3>Noughts</h3>
-        <p class="player-info-score">Wins: 0</p>
+        <p class="player-info-score">Wins: {{ ctrl.game.players[1].wins }}</p>
         <h3 ng-show="ctrl.game.currentPlayerTurnIndex == 1"
             class="player-info-turn-text">Your turn!</h3>
       </div>
       <div class="player-buttons-and-decor">
+        <a  ng-click="ctrl.game.resetScore()"
+            class="btn btn-warning" href="#">Reset score</a>
         <a class="btn btn-warning" href="#">View on github</a>
       </div>
     </div>

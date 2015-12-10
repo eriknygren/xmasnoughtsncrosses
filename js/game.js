@@ -3,8 +3,11 @@ var NC = {};
 (function() {
   'use strict';
 
-  NC.Game = function() {
+  NC.Game = function(gameOverCallBack) {
+    this.gameOverCallBack = gameOverCallBack;
     this.currentPlayerTurnIndex = 0;
+    this.turns = 0;
+    this.winner = null;
 
     this.players = _.map(_.range(2), function(){ 
       return new NC.Player();
@@ -16,29 +19,40 @@ var NC = {};
   };
 
   NC.Game.prototype.makeMove = function(rowIndex, tileIndex) {
-    if (!!this.board[rowIndex].tiles[tileIndex].checkedID) {
-      //tile already checked
+    if (!this._canClickTile(rowIndex, tileIndex)) {
       return;
     }
     this.board[rowIndex].tiles[tileIndex].checkedID = this.currentPlayerTurnIndex;
-    this.moveToNextPlayer();
+    this._moveToNextPlayer();
 
   };
 
-  NC.Game.prototype.moveToNextPlayer = function() {
+  NC.Game.prototype._moveToNextPlayer = function() {
+    this.turns += 1;
     var current = this.currentPlayerTurnIndex;
     this.currentPlayerTurnIndex = current == 0 ? 1 : 0;
-    this._checkForWinner();
+    this.winner = this._checkForWinner();
+    
+    if (this.winner || this._hasGameDrawn()) {
+      this.gameOverCallBack(this.winner);
+    }
   };
 
-  NC.Game.prototype.reset = function() {
+  NC.Game.prototype.resetBoard = function() {
     _.each(this.board, function(row) {
       _.each(row.tiles, function(tile){
         tile.checkedID = null;
       });
     });
 
+    this.turns = 0;
     this.currentPlayerTurnIndex = 0;
+  };
+
+  NC.Game.prototype.resetScore = function() {
+    _.each(this.players, function(player){
+      player.score = 0;
+    });
   };
 
   NC.Row = function () {
@@ -55,6 +69,10 @@ var NC = {};
     this.wins = 0;
   };
 
+  NC.Game.prototype._hasGameDrawn = function() {
+    return this.turns >= 9;
+  };
+
   NC.Game.prototype._checkForWinner = function() {
     var winnerID = null;
     _.each(this.players, function(player, index){
@@ -63,13 +81,11 @@ var NC = {};
         winnerID = index;
       }
     }.bind(this));
-    console.log(winnerID)
 
-    return winnerID;
+    return this.players[winnerID];
   };
 
   NC.Game.prototype._hasPlayerWon = function(id) {
-    //console.log(this._checkForVerticalWin(id));
     return (this._checkForHorizontalWin(id) || 
             this._checkForVerticalWin(id) ||
             this._checkForDiagonalWin(id));
@@ -118,6 +134,14 @@ var NC = {};
     return _.all(tiles, function(tile){
       return tile.checkedID === id;
     });
+  };
+
+  NC.Game.prototype._canClickTile = function(rowIndex, tileIndex) {
+    if (!!this.winner || !!this.board[rowIndex].tiles[tileIndex].checkedID) {
+      //tile already checked or game over
+      return false;
+    }
+    return true;
   };
 
 })();
