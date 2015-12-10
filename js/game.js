@@ -29,6 +29,16 @@ var NC = {};
     this.currentPlayerTurnIndex = current == 0 ? 1 : 0;
   };
 
+  NC.Game.prototype.reset = function() {
+    _.each(this.board, function(row) {
+      _.each(row.tiles, function(tile){
+        tile.checkedID = null;
+      });
+    });
+
+    this.currentPlayerTurnIndex = 0;
+  };
+
   NC.Row = function () {
     this.tiles = _.map(_.range(3), function(){ 
       return new NC.Tile();
