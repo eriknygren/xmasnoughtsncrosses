@@ -55,7 +55,7 @@ var NC = {};
   NC.Game.prototype.resetScore = function() {
     this.resetBoard();
     _.each(this.players, function(player){
-      player.score = 0;
+      player.wins = 0;
     });
   };
 
