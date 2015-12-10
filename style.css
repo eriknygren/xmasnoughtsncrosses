@@ -1,14 +1,14 @@
 body {
   overflow: hidden;
 }
-
 .player-left {
   position: fixed;
   left: 0;
   top: 0;
   width: 20%;
   height: 100%;
-  background-color: green;
+  color: #34502B;
+  background: linear-gradient(135deg, #941F1F, #CE6B5D);
 }
 
 .player-right {
@@ -17,13 +17,45 @@ body {
   top: 0;
   width: 20%;
   height: 100%;
-  background-color: red;
+  color: #941F1F;
+  background: linear-gradient(135deg, #7B9971, #34502B);
+}
+
+.player-info-container {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.player-info-name {
+  font-size: 4rem;
+}
+
+.player-info-score {
+  font-size: 3rem;
+}
+
+.player-info-turn-text {
+  margin-top: 5rem;
+  font-size: 4rem;
+  transition: all 0.4s ease;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+}
+
+.player-buttons-and-decor {
+  bottom: 20px;
+  position: absolute;
+  width: 100%;
+  text-align: center;
 }
 
 .board {
   margin: 0 auto;
   width: 60%;
   height: 100%;
+  background-color: #FFEFB9;
 }
 
 .board-row {
@@ -33,4 +65,37 @@ body {
 .tile {
   height: 100%;
   border: 1px solid black;
+  font-size: 30vh;
 }
+
+.tile-nought {
+  color: #34502B;
+}
+
+.tile-cross {
+  color: #941F1F;
+}
+
+.align-content-center {
+  text-align: center;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.spinning {
+  -webkit-animation:spin 2s linear infinite;
+  -moz-animation:spin 2s linear infinite;
+  animation:spin 2s linear infinite;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
