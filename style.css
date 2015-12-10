@@ -77,6 +77,11 @@ body {
   color: #941F1F;
 }
 
+.decor-img {
+  height: 10vh;
+  width: auto;
+}
+
 .align-content-center {
   text-align: center;
   display: -ms-flexbox;
