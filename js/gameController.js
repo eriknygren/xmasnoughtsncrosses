@@ -5,10 +5,9 @@
 
     this.game = new NC.Game(onGameOver);
 
-    function onGameOver(winner) {
-      console.log('gg', winner);
+    function onGameOver() {
+      $('#myModal').modal()
     };
-    console.log(this.game);
   };
 
   GameController.$inject = [];

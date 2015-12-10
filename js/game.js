@@ -9,8 +9,10 @@ var NC = {};
     this.turns = 0;
     this.winner = null;
 
-    this.players = _.map(_.range(2), function(){ 
-      return new NC.Player();
+    var playerNames = ['Red Santa', 'Green Santa'];
+
+    this.players = _.map(_.range(2), function(i){ 
+      return new NC.Player(playerNames[i]);
     });
 
     this.board = _.map(_.range(3), function(){ 
@@ -34,7 +36,7 @@ var NC = {};
     this.winner = this._checkForWinner();
     
     if (this.winner || this._hasGameDrawn()) {
-      this.gameOverCallBack(this.winner);
+      this.gameOverCallBack();
     }
   };
 
@@ -47,6 +49,7 @@ var NC = {};
 
     this.turns = 0;
     this.currentPlayerTurnIndex = 0;
+    this.winner = null;
   };
 
   NC.Game.prototype.resetScore = function() {
@@ -65,8 +68,9 @@ var NC = {};
     this.checkedID = null;
   };
 
-  NC.Player = function() {
+  NC.Player = function(name) {
     this.wins = 0;
+    this.name = name;
   };
 
   NC.Game.prototype._hasGameDrawn = function() {

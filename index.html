@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>xmas 3square ;)</title>
+  <title>xmas noughts n crosses and a ho ho ho and a hi hi hi</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -53,20 +53,27 @@
         <a class="btn btn-warning" href="#">View on github</a>
       </div>
     </div>
-  </div>
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        </div>
-        <div class="modal-body">
-          <img class="spinning" src="img/red-santa.png" />
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Ok, merry xmas</button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">The results are in!!</h4>
+          </div>
+          <div class="modal-body text-center">
+            <img class="spinning" src="img/red-santa.png" />
+            <span ng-show="!!ctrl.game.winner">
+              We have a winner! Wow well done {{ ctrl.game.winner.name }}
+            </span>
+            <span ng-show="!ctrl.game.winner">
+              It's a draw :I #XmasTension
+            </span>
+            <img class="spinning" src="img/green-santa.png" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">Ok, merry xmas</button>
+          </div>
         </div>
       </div>
     </div>
