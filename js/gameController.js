@@ -7,7 +7,14 @@
 
     function onGameOver() {
       $('#myModal').modal()
+      playApplause();
     };
+
+    function playApplause() {
+      var sample = document.getElementById('applause');
+      sample.load();
+      sample.play();
+    }
   };
 
   GameController.$inject = [];

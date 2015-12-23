@@ -18,5 +18,5 @@
 
 
   // HELL YEAH
-  //$(document.body).snowfall();
+  $(document.body).snowfall();
 })();
