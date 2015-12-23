@@ -1,12 +1,25 @@
 body {
   overflow: hidden;
 }
+
+@media screen and (min-width: 993px) {
+  .player-container {
+    width: 20%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .player-container {
+    width: 50%;
+    height: 80px;
+  }
+}
+
 .player-left {
   position: fixed;
   left: 0;
   top: 0;
-  width: 20%;
-  height: 100%;
   color: #34502B;
   background: linear-gradient(135deg, #941F1F, #CE6B5D);
 }
@@ -15,8 +28,6 @@ body {
   position: fixed;
   right: 0;
   top: 0;
-  width: 20%;
-  height: 100%;
   color: #941F1F;
   background: linear-gradient(135deg, #7B9971, #34502B);
 }
@@ -30,18 +41,33 @@ body {
   font-size: 4rem;
 }
 
+.player-info-type {
+  font-size: 2.5rem;
+}
+
 .player-info-score {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 
 .player-info-turn-text {
-  margin-top: 5rem;
-  font-size: 4rem;
+  font-size: 2rem;
   transition: all 0.4s ease;
   -webkit-transition: all 0.4s ease;
   -moz-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   -ms-transition: all 0.4s ease;
+}
+
+@media screen and (min-width: 993px) {
+  .player-info-turn-text {
+    margin-top: 5rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+ .player-info-turn-text {
+    margin-top: 0;
+  }
 }
 
 .player-buttons-and-decor {
@@ -51,9 +77,22 @@ body {
   text-align: center;
 }
 
+@media screen and (min-width: 993px) {
+  .board {
+    margin: 0 auto;
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .board {
+    margin: 80px auto 0;
+    padding-bottom: 80px;
+    width: 100%;
+  }
+}
+
 .board {
-  margin: 0 auto;
-  width: 60%;
   height: 100%;
   background-color: #FFEFB9;
 }
@@ -65,8 +104,19 @@ body {
 .tile {
   height: 100%;
   border: 1px solid black;
-  font-size: 30vh;
   cursor: pointer;
+}
+
+@media screen and (min-width: 993px) {
+  .tile {
+    font-size: 30vh;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .tile {
+    font-size: 25vh;
+  }
 }
 
 .tile-nought {

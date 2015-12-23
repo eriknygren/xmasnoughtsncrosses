@@ -13,10 +13,10 @@
 
   function setFontSize(element) {
     var currentSize = element.style.fontSize;
-    element.style.fontSize = currentSize == "4rem" ? "6rem" : "4rem";
+    element.style.fontSize = currentSize == "2rem" ? "3.8rem" : "2rem";
   };
 
 
   // HELL YEAH
-  $(document.body).snowfall();
+  //$(document.body).snowfall();
 })();

@@ -1,6 +1,7 @@
 <html>
 <head>
   <title>xmas noughts n crosses and a ho ho ho and a hi hi hi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -14,16 +15,19 @@
 </head>
 <body ng-app="xmas">
   <div ng-controller="GameController as ctrl">
-    <div class="player-left">
+    <div class="player-container player-left">
       <div class="player-info-container">
-        <img class="hidden-xs" src="img/red-santa.png" />
-        <h3 class="player-info-name">Player One</h3>
-        <h3>Crosses</h3>
-        <p class="player-info-score">Wins: {{ ctrl.game.players[0].wins }}</p>
+        <img class="hidden-xs hidden-sm" src="img/red-santa.png" />
+        <br class="hidden-xs hidden-sm" />
+        <span class="player-info-name hidden-xs hidden-sm">Player One</span>
+        <span class="player-info-type">Crosses</span>
+        <p class="player-info-score visible-xs-inline visible-sm-inline">
+          <span class="hidden-xs">Wins: </span> {{ ctrl.game.players[0].wins }}
+        </p>
         <h3 ng-show="ctrl.game.currentPlayerTurnIndex == 0"
             class="player-info-turn-text">Your turn!</h3>
       </div>
-      <div class="player-buttons-and-decor">
+      <div class="player-buttons-and-decor hidden-xs hidden-sm">
         <p class="text-center">
           <img class="decor-img" src="img/tree.png">
           <img class="decor-img" src="img/ball.png">
@@ -43,16 +47,19 @@
         </div>
       </div>
     </div>
-    <div class="player-right">
+    <div class="player-container player-right">
       <div class="player-info-container">
-        <img class="hidden-xs" src="img/green-santa.png" />
-        <h3 class="player-info-name">Player Two</h3>
-        <h3>Noughts</h3>
-        <p class="player-info-score">Wins: {{ ctrl.game.players[1].wins }}</p>
+        <img class="hidden-xs hidden-sm" src="img/green-santa.png" />
+        <br class="hidden-xs hidden-sm" />
+        <span class="player-info-name hidden-xs hidden-sm">Player Two</span>
+        <span class="player-info-type">Noughts</span>
+        <p class="player-info-score visible-xs-inline visible-sm-inline">
+          <span class="hidden-xs">Wins: </span> {{ ctrl.game.players[1].wins }}
+        </p>
         <h3 ng-show="ctrl.game.currentPlayerTurnIndex == 1"
             class="player-info-turn-text">Your turn!</h3>
       </div>
-      <div class="player-buttons-and-decor">
+      <div class="player-buttons-and-decor hidden-xs hidden-sm">
         <p class="text-center">
           <img class="decor-img" src="img/ball.png">
           <img class="decor-img" src="img/gingerbread-man.png">
