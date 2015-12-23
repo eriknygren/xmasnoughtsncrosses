@@ -8,14 +8,15 @@ var NC = {};
     this.currentPlayerTurnIndex = 0;
     this.turns = 0;
     this.winner = null;
+    this.isGameOver = false;
 
     var playerNames = ['Red Santa', 'Green Santa'];
 
-    this.players = _.map(_.range(2), function(i){ 
+    this.players = _.map(_.range(2), function(i){
       return new NC.Player(playerNames[i]);
     });
 
-    this.board = _.map(_.range(3), function(){ 
+    this.board = _.map(_.range(3), function(){
       return new NC.Row();
     });
   };
@@ -34,8 +35,9 @@ var NC = {};
     var current = this.currentPlayerTurnIndex;
     this.currentPlayerTurnIndex = current == 0 ? 1 : 0;
     this.winner = this._checkForWinner();
-    
+
     if (this.winner || this._hasGameDrawn()) {
+      this.isGameOver = true;
       this.gameOverCallBack();
     }
   };
@@ -47,6 +49,7 @@ var NC = {};
       });
     });
 
+    this.isGameOver = false;
     this.turns = 0;
     this.currentPlayerTurnIndex = 0;
     this.winner = null;
@@ -60,7 +63,7 @@ var NC = {};
   };
 
   NC.Row = function () {
-    this.tiles = _.map(_.range(3), function(){ 
+    this.tiles = _.map(_.range(3), function(){
       return new NC.Tile();
     });
   };
@@ -91,7 +94,7 @@ var NC = {};
   };
 
   NC.Game.prototype._hasPlayerWon = function(id) {
-    return (this._checkForHorizontalWin(id) || 
+    return (this._checkForHorizontalWin(id) ||
             this._checkForVerticalWin(id) ||
             this._checkForDiagonalWin(id));
   };
@@ -116,7 +119,7 @@ var NC = {};
   };
 
   NC.Game.prototype._getTilesInColumns = function() {
-    return _.map(_.range(3), function(i){ 
+    return _.map(_.range(3), function(i){
       return _.map(this.board, function(row) {
         return row.tiles[i];
       })
@@ -124,13 +127,13 @@ var NC = {};
   };
 
   NC.Game.prototype._getTilesLeftDiagonally = function() {
-    return _.map(_.range(3), function(i){ 
+    return _.map(_.range(3), function(i){
       return this.board[i].tiles[i]
     }.bind(this));
   };
 
   NC.Game.prototype._getTilesRightDiagonally = function() {
-    return _.map(_.range(3).reverse(), function(value, index){ 
+    return _.map(_.range(3).reverse(), function(value, index){
       return this.board[index].tiles[value];
     }.bind(this));
   };

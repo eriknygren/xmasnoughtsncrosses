@@ -21,7 +21,7 @@
         <br class="hidden-xs hidden-sm" />
         <span class="player-info-name hidden-xs hidden-sm">Player One</span>
         <span class="player-info-type">Crosses</span>
-        <p class="player-info-score visible-xs-inline visible-sm-inline">
+        <p class="player-info-score visible-xs-inline visible-sm-inline visible-md visible-lg">
           <span class="hidden-xs">Wins: </span> {{ ctrl.game.players[0].wins }}
         </p>
         <h3 ng-show="ctrl.game.currentPlayerTurnIndex == 0"
@@ -33,8 +33,6 @@
           <img class="decor-img" src="img/ball.png">
           <img class="decor-img" src="img/snowman.png">
         </p>
-        <a  ng-click="ctrl.game.resetBoard()"
-            class="btn btn-warning" href="#">Reset board</a>
       </div>
     </div>
     <div class="container board">
@@ -96,6 +94,13 @@
             <button type="button" class="btn btn-warning" data-dismiss="modal">Ok, merry xmas</button>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Game finished splash -->
+    <div ng-show="ctrl.game.isGameOver" class="gg-overlay">
+      <div class="gg-container">
+        <a  ng-click="ctrl.game.resetBoard()"
+            class="btn btn-warning" href="#">Wow that was so fun, another one please</a>
       </div>
     </div>
   </div>
